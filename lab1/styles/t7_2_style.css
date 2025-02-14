@@ -1,0 +1,26 @@
+body{
+    background-color: black;
+    margin: 0;
+    overflow: hidden;
+}
+
+nav{
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: lightgray;
+    color: black;
+    z-index: 1000;
+}
+
+.squareContainer{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.randSizePosition{
+    background-color: red;
+    position: absolute;
+}
