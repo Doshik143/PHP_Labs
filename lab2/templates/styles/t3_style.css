@@ -1,0 +1,121 @@
+body{
+    text-align: center;
+    background-color: aliceblue;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    /* Додаткові стилі, якщо потрібно */
+    border: 1px solid transparent; /* Наприклад, рамка */
+    border-radius: 3px; /* Закруглені кути */
+    transition: transform 0.2s ease;
+}
+
+.icon-container {
+    position: fixed; /* Фіксуємо контейнер */
+    top: 0; /* Верхній край */
+    right: 0; /* Правий край */
+    display: flex; /* Використовуємо Flexbox для розташування в ряд */
+    gap: 10px; /* Відступ між іконками */
+    padding: 10px; /* Відступи всередині контейнера */
+    background-color: rgba(255, 255, 255, 0.8); /* Фон для кращого контрасту */
+    border-bottom-left-radius: 8px; /* Закруглення нижнього лівого кута */
+    z-index: 1000; /* Щоб контейнер був поверх інших елементів */
+}
+
+.icon:hover {
+    transform: scale(1.1); /* Збільшення іконки */
+}
+
+h5{
+    color: dimgray;
+}
+
+.password1{
+    position: relative;
+    display: inline-block;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+}
+
+.password-toggle:hover {
+    color: #000;
+}
+
+.password-toggle i {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.password-toggle:hover i {
+    transform: scale(1.1); /* Збільшення іконки при наведенні */
+}
+
+/* ResultsForm */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+}
+
+table td {
+    background-color: #fff;
+    color: #555;
+}
+
+.loadImg {
+    max-width: 200px; /* Зменшено ширину */
+    max-height: 150px; /* Додано обмеження висоти */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #fff;
+    display: block; /* Щоб зображення не було inline */
+    margin: 10px 0; /* Відступи зверху та знизу */
+}
+
+.loadImg:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
