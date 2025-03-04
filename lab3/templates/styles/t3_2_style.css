@@ -1,0 +1,139 @@
+body{
+    text-align: center;
+    background-color: aliceblue;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* FilesList */
+.card {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    background-color: rgba(17, 24, 39, 1);
+    padding: 1.5rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #fff
+}
+
+.lists {
+    margin-bottom: 1.5rem;
+    flex: 1 1 0%;
+    color: rgba(156, 163, 175, 1);
+}
+
+.lists .list {
+    margin-bottom: 0.5rem;
+    display: flex;
+    margin-left: 0.5rem
+}
+
+.lists .list svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+    color: rgba(167, 139, 250, 1);
+}
+
+.action {
+    border: none;
+    outline: none;
+    display: inline-block;
+    border-radius: 0.25rem;
+    background-color: rgba(167, 139, 250, 1);
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(17, 24, 39, 1);
+}
+
+/* DeleteFileInput */
+.input-wrapper {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.input {
+    width: 170px;
+    height: 40px;
+    outline: none;
+    padding-left: 15px;
+    font-size: 0.7em;
+    background-color: #fafaf7;
+    border-radius: 6px;
+    border: 1px solid #d0d7e1;
+}
+.Subscribe-btn {
+    height: 40px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 6px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    background-color: #292524;
+    transition: all 0.3s;
+    font-size: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+.Subscribe-btn:hover {
+    color: white;
+}
+.Subscribe-btn:hover .arrow {
+    margin-right: 0;
+    animation: jello-vertical 0.9s both;
+    transform-origin: left;
+}
+
+@keyframes jello-vertical {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    40% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    50% {
+        transform: scale3d(0.85, 1.15, 1);
+    }
+    65% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+    75% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+.Subscribe-btn:active {
+    transform: scale(0.9);
+}

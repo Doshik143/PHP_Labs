@@ -1,0 +1,86 @@
+body{
+    text-align: center;
+    background-color: aliceblue;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #444;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+li {
+    margin: 10px 0;
+}
+
+button {
+    display: flex;
+    height: 3em;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+}
+
+button > svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
+}
+
+button:hover > svg {
+    font-size: 1.2em;
+    transform: translateX(-5px);
+}
+
+button:hover {
+    box-shadow: 9px 9px 33px gray, -9px -9px 33px white;
+    transform: translateY(-2px);
+}
+
+.buttons {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: dimgray;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.buttons:hover {
+    background-color: black;
+}
+
+/* Styles for fonts */
+.large {
+    font-size: 24px;
+}
+
+.medium {
+    font-size: 18px;
+}
+
+.small {
+    font-size: 14px;
+}
