@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #353535, #b1b1b1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.register-container {
+    width: 90%;
+    max-width: 400px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    overflow-y: auto;
+    max-height: 95vh;
+}
+
+.register-container h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    border-bottom: 2px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.input-group label {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    font-size: 14px;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus ~ label,
+.input-group input:valid ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:valid ~ label,
+.input-group select:focus ~ label,
+.input-group select:valid ~ label {
+    top: -8px;
+    font-size: 10px;
+    color: white;
+}
+
+button {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    color: #fff;
+    background: dimgrey;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #2575fc;
+}
+
+.error {
+    color: #ff4d4d;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.success {
+    color: #4caf50;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+select {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-bottom: 2px solid #fff;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+select option {
+    background: dimgrey;
+    color: #fff;
+    padding: 10px;
+}
+
+select:focus {
+    border-bottom: 2px solid darkgray;
+}
+
+.register-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: black;
+    text-align: center;
+
+}
+
+.register-link a {
+    color: whitesmoke;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: lightgray;
+}
