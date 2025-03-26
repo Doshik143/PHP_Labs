@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>UsersList</h1>
+  <div id="userControls">
+    <button id="logoutBtn">Log Out</button>
+  </div>
+  <div id="usersTable">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Registration Date</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody id="usersList">
+      <!-- Users will be loaded here -->
+      </tbody>
+    </table>
+  </div>
+  <div id="message"></div>
+</div>
+<!-- Edit User Modal -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Edit User</h2>
+    <form id="editUserForm">
+      <input type="hidden" id="editUserId">
+      <div class="form-group">
+        <label for="editName">Name:</label>
+        <input type="text" id="editName" required>
+      </div>
+      <div class="form-group">
+        <label for="editEmail">Email:</label>
+        <input type="email" id="editEmail" required>
+      </div>
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/users.js"></script>
+</body>
+</html>
