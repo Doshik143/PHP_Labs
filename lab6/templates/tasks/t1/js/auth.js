@@ -1,4 +1,4 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const email = document.getElementById('email').value;
@@ -9,31 +9,32 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         return;
     }
 
-    loginUser({ email, password });
+    try {
+        await loginUser({ email, password });
+    } catch (error) {
+        showMessage('error', 'Помилка під час входу: ' + error.message);
+    }
 });
 
-function loginUser(credentials) {
-    fetch('api/login.php', {
+async function loginUser(credentials) {
+    const response = await fetch('api/login.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(credentials)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                showMessage('error', data.error);
-            } else {
-                showMessage('success', 'Вхід успішний! Перенаправлення...');
-                setTimeout(() => {
-                    window.location.href = 'users.html';
-                }, 1500);
-            }
-        })
-        .catch(error => {
-            showMessage('error', 'Помилка під час входу: ' + error);
-        });
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.error || 'Невідома помилка сервера');
+    }
+
+    showMessage('success', 'Вхід успішний! Перенаправлення...');
+    setTimeout(() => {
+        window.location.href = 'users.html';
+    }, 1500);
 }
 
 function showMessage(type, text) {

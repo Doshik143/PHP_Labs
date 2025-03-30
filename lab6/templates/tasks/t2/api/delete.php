@@ -1,23 +1,39 @@
 <?php
 global $conn;
 require_once 'config.php';
+require_once 'auth.php';
+
+header("Content-Type: application/json");
+
+if (!isLoggedIn()) {
+    http_response_code(401);
+    die(json_encode(["error" => "Необхідно авторизуватися"]));
+}
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (!empty($data->id)) {
-    $query = "DELETE FROM notes WHERE id = :id";
-    $stmt = $conn->prepare($query);
-
-    $stmt->bindParam(':id', $data->id);
-
-    if ($stmt->execute()) {
-        http_response_code(200);
-        echo json_encode(["message" => "Note deleted successfully."]);
-    } else {
-        http_response_code(503);
-        echo json_encode(["message" => "Unable to delete note."]);
-    }
-} else {
+if (empty($data->id)) {
     http_response_code(400);
-    echo json_encode(["message" => "Unable to delete note. ID is missing."]);
+    die(json_encode(["error" => "Не вказано ID нотатки"]));
+}
+
+$user_id = getCurrentUserId();
+
+$checkQuery = "SELECT id FROM notes WHERE id = ? AND user_id = ?";
+$checkStmt = $conn->prepare($checkQuery);
+$checkStmt->execute([$data->id, $user_id]);
+
+if ($checkStmt->rowCount() === 0) {
+    http_response_code(403);
+    die(json_encode(["error" => "Ця нотатка вам не належить"]));
+}
+
+$deleteQuery = "DELETE FROM notes WHERE id = ?";
+$deleteStmt = $conn->prepare($deleteQuery);
+
+if ($deleteStmt->execute([$data->id])) {
+    echo json_encode(["success" => true, "message" => "Нотатку видалено"]);
+} else {
+    http_response_code(500);
+    echo json_encode(["error" => "Помилка при видаленні"]);
 }

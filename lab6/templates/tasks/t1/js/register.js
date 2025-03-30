@@ -1,4 +1,4 @@
-document.getElementById('registerForm').addEventListener('submit', function(e) {
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const name = document.getElementById('name').value;
@@ -15,29 +15,31 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
         return;
     }
 
-    registerUser({ name, email, password });
+    try {
+        await registerUser({ name, email, password });
+    } catch (error) {
+        console.error('Error:', error);
+        showMessage('error', 'Сталася помилка при реєстрації');
+    }
 });
 
-function registerUser(userData) {
-    fetch('api/register.php', {
+async function registerUser(userData) {
+    const response = await fetch('api/register.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                showMessage('error', data.error);
-            } else {
-                showMessage('success', 'Реєстрація успішна! Тепер ви можете увійти.');
-                document.getElementById('registerForm').reset();
-            }
-        })
-        .catch(error => {
-            showMessage('error', 'Помилка під час реєстрації: ' + error);
-        });
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    if (response.ok) {
+        showMessage('success', 'Реєстрація успішна!');
+    } else {
+        showMessage('error', data.message || 'Помилка реєстрації');
+    }
+
+    return data;
 }
 
 function showMessage(type, text) {

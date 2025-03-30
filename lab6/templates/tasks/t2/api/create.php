@@ -1,24 +1,24 @@
 <?php
 global $conn;
 require_once 'config.php';
+require_once 'auth.php';
 
 $data = json_decode(file_get_contents("php://input"));
+$user_id = getCurrentUserId();
 
-if (!empty($data->title) && !empty($data->content)) {
-    $query = "INSERT INTO notes (title, content) VALUES (:title, :content)";
-    $stmt = $conn->prepare($query);
+$query = "INSERT INTO notes (title, content, user_id) VALUES (?, ?, ?)";
+$stmt = $conn->prepare($query);
+$stmt->execute([$data->title, $data->content, $user_id]);
 
-    $stmt->bindParam(':title', $data->title);
-    $stmt->bindParam(':content', $data->content);
+http_response_code(201);
+echo json_encode(["message" => "Note created successfully."]);
 
-    if ($stmt->execute()) {
-        http_response_code(201);
-        echo json_encode(["message" => "Note created successfully."]);
-    } else {
-        http_response_code(503);
-        echo json_encode(["message" => "Unable to create note."]);
-    }
-} else {
+if (!isLoggedIn()) {
+    http_response_code(401);
+    die(json_encode(["error" => "Для додавання нотаток увійдіть у систему"]));
+}
+
+if (empty($data->title) || empty($data->content)) {
     http_response_code(400);
-    echo json_encode(["message" => "Unable to create note. Data is incomplete."]);
+    die(json_encode(["error" => "Заголовок і текст нотатки обов'язкові"]));
 }

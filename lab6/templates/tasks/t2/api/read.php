@@ -1,11 +1,17 @@
 <?php
 global $conn;
 require_once 'config.php';
+require_once 'auth.php';
 
-$query = "SELECT id, title, content, created_at, updated_at FROM notes ORDER BY updated_at DESC";
+$isLoggedIn = isLoggedIn();
+$userId = $isLoggedIn ? getCurrentUserId() : null;
+
+$query = "SELECT id, title, content, created_at, updated_at, 
+          CASE WHEN user_id = ? THEN 1 ELSE 0 END as is_owner
+          FROM notes 
+          ORDER BY updated_at DESC";
+
 $stmt = $conn->prepare($query);
-$stmt->execute();
+$stmt->execute([$userId]);
 
-$notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-echo json_encode($notes);
+echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
